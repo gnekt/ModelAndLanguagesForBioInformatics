@@ -1,3 +1,6 @@
+%Write a (Prolog) program which takes in input two ordered lists of
+%integers and returns an ordered list of integers containing all elements in the original lists.
+
 orderList([],[],[]).
 orderList([],X,X).
 orderList(Y,[],Y).

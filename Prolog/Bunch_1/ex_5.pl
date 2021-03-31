@@ -1,3 +1,6 @@
+% Write a program which given a list of integers L returns an ordered
+% list of integers containing the elements in L
+
 concat([],X,X).
 concat([X|L1],L2,[X|LO]):- concat(L1,L2,LO).
 
