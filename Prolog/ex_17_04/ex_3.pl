@@ -12,6 +12,6 @@ findElementInATree(Target,t(Root,LeftRoot,RightRoot)):- Target < Root,
 intersectionTrees(nil,T1,[]).
 intersectionTrees(T,nil,[]).
 intersectionTrees(nil,nil,[]).
-intersectionTrees(t(Root,nil,nil),T,[Root]):- findElementInATree(Root,T).
+intersectionTrees(t(Root,nil,nil),T,[Root]):- findElementInATree(Root,T),!.
 intersectionTrees(t(Root1,Left1,Right1),T,RS):- intersectionTrees(Left1,T,RL), intersectionTrees(Right1,T,RR),concat(RL,RR,RS), \+ findElementInATree(Root1,T).
 intersectionTrees(t(Root1,Left1,Right1),T,Result):- intersectionTrees(Left1,T,RL), intersectionTrees(Right1,T,RR),concat(RL,RR,RS), findElementInATree(Root1,T).
