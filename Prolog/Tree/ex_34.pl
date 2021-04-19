@@ -1,8 +1,9 @@
-% Add an element into a bst not in the leaves, without modifying the structure of the
-% bst
+% Add an element into a bst, without modifying the structure of the
+% bst, the only minimum spec. is that the tree MUST BE balanced.
 % Examples
 % addNodeInBst(t(4, t(2, t(1, nil, nil), nil), t(9, t(5, nil, nil), nil)),6,X).
 % X = t(4, t(2, t(1, nil, nil), nil), t(6, t(5, nil, nil), t(9, nil, nil))).
+
 merge([],[],[]).
 merge([],X,X).
 merge(Y,[],Y).
@@ -25,6 +26,7 @@ transfer([X|L],N, [X|Lr] ):- N > 0, !, N1 is N-1, transfer(L,N1,Lr).
 
 slice(List,I,K,L):- N1 is I-1,removeFirstNFromList(List,N1,Lout), N2 is (K-I)+1,transfer(Lout,N2,L).
 
+% inorder(Tree,List):- Return a In-order representation of a given tree
 inorder(nil,[]):-!.
 inorder(t(Root,nil,nil),[Root]):-!.
 inorder(t(Root,Left,Right),Out):-
@@ -33,9 +35,12 @@ inorder(t(Root,Left,Right),Out):-
     append(LeftR,[Root],LO1),
     append(LO1,RightR, Out).
 
+% get_at(Value,List,Index,Out):- Return the value positioned at the index position in the list, return the output list unmodified.
 get_at(X,[X|L],1,[X|L]).
 get_at(X,[Y|L],N,[Y|Lr]):- N>1, N1 is N-1, get_at(X,L,N1,Lr).
 
+
+%fromListToBst(List,Tree):- Return a tree representation of an in-order list.
 fromListToBst([],nil):-!.
 fromListToBst([Root],t(Root,nil,nil)):-!.
 fromListToBst([Elem,Root],t(Root,t(Elem,nil,nil),nil)):-Elem < Root,!.
@@ -61,7 +66,9 @@ fromListToBst(List, t(Root,Left,Right)):-
     fromListToBst(LeftSlice,Left),
     fromListToBst(RightSlice,Right).
 
-
+% addNodeInBst(Tree,Value,NewTree):- Given a bst tree and a value to add, return a new tree with the value added (also not in a leaf),
+%                                       respecting the original structure and the rule of a BST.
+%                                           Condition to work is that the starting tree is balanced.
 addNodeInBst(Tree,Value,NewTree):- inorder(Tree,OutList), merge(OutList,[Value],NewList),
     									fromListToBst(NewList,NewTree).
     								

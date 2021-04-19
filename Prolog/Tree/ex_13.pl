@@ -1,4 +1,4 @@
-%from a list to a BST
+%from an in-order list to a BST
 
 
 bInsert(X,nil,t(X,nil,nil)):-!.

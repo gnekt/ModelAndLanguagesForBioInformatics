@@ -10,7 +10,5 @@ atlevel(t(_,L,R),D,S) :- D > 1, D1 is D-1,
 % Retrieve the level ordered list of a BST
 
 levelorder(T,S) :- levelorder(T,S,1).
-
 levelorder(T,[],D) :- atlevel(T,D,[]), !.
-levelorder(T,S,D) :- atlevel(T,D,SD),
-   D1 is D+1, levelorder(T,S1,D1), append(SD,S1,S).
+levelorder(T,S,D) :- atlevel(T,D,SD), D1 is D+1, levelorder(T,S1,D1), append(SD,S1,S).
