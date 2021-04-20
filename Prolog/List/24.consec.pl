@@ -12,6 +12,7 @@ consec(X,[X,Y|List],Y):-!.
 consec(X,[A,B|List],Y):- consec(X,[B|List],Y).
 
 % Oppure, per una sola occorrenza
+
 consec(N,[N,Y|_],Y):-!.
 consec(N,[_|L],Y):-consec(N,L,Y).
 

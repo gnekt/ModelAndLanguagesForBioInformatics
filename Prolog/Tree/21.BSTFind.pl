@@ -12,9 +12,16 @@ isATree(t(Root,Left,Right)):- isATree(t(Left,NodeL1,NodeR1)),
 
 % Then write a program to look for a value N inside a binary search tree.
 % The equal node are putted into the right sub-tree as hp.
-findElementInATree(Target,t(Target,LeftRoot,RightRoot)).
-findElementInATree(Target,t(Root,LeftRoot,RightRoot)):- Target >= Root,
-                                                        findElementInATree(Target,RightRoot).
+% All Solution
 
-findElementInATree(Target,t(Root,LeftRoot,RightRoot)):- Target < Root,
-                                                        findElementInATree(Target,LeftRoot).
+bstmember(X,t(X,nil,nil)):-!.
+bstmember(X,t(X,_,_)).
+bstmember(X,t(Y,_,LR)):-X>=Y,!,bstmember(X,LR).
+bstmember(X,t(_,LS,_)):-bstmember(X,LS).
+
+% Only first Occurrences 
+
+bstmember(X,t(X,nil,nil)):-!.
+bstmember(X,t(X,_,_)):-!.
+bstmember(X,t(Y,_,LR)):-X>=Y,!,bstmember(X,LR).
+bstmember(X,t(_,LS,_)):-bstmember(X,LS).

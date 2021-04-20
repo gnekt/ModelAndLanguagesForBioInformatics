@@ -1,3 +1,5 @@
+% Operazioni aritmetiche con numeri
+
 pari(X):-0 is X mod 2.
 
 dispari(X):-1 is X mod 2.
