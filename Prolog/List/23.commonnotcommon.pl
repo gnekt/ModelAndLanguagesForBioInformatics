@@ -9,6 +9,5 @@
 % # restituirà L3=[a,t] e L4=[r].
 
 list_member([],L2,[],[]):-!.
-list_member([],[],[],[]):-!.
 list_member([X|L1],L2,[X|RU],RI):- member(X,L2),!, list_member(L1,L2,RU,RI).
 list_member([X|L1],L2,RU,[X|RI]):- list_member(L1,L2,RU,RI).

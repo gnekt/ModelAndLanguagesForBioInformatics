@@ -5,5 +5,5 @@
 
 permutation([],[]).
 permutation([X],[X]).
-permutation([X|L], [X|LO]):- permutation(L,Permutation).
+permutation([X|L], [X|LO]):- permutation(L,LO).
   
