@@ -41,19 +41,18 @@ def ascending(list: list) -> bool:
 
 
 def check_fact(matrix, tree):
-    _flag = False
-    for row in matrix:
+    _flag = [False for _ in range(len(matrix))]
+    for (row,index) in zip(matrix,range(len(matrix))):
         if ascending(row):
-            _flag = True
+            _flag[index] = True
             for element in row:
                 if not find_element_bst(tree, element):
-                    _flag = False
-        if _flag:
-            return True
-    return False
+                    _flag[index] = False
+                    break
+    return True in _flag
 
 
 if __name__ == '__main__':
-    matrix1 = [[1, 2, 3], [2,4,5,7,10],[1, 2, 3]]
+    matrix1 = [[1, 2, 3], [2,4,5,6,10],[1, 2, 3]]
     tree = Node(4, Node(2), Node(5, Node(4), Node(10, Node(6))))
     print(check_fact(matrix1,tree))
