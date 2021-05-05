@@ -52,6 +52,54 @@ def from_in_order_to_tree(list):
                 from_in_order_to_tree(list[(int((len(list) + 1) / 2)) + 1:]))
 
 
+def tree_in_row_matrix(tree, matrix):
+    _internal_tree_representation = print_in_order(tree)
+    for row in matrix:
+        if _internal_tree_representation in row:
+            return True
+    return False
+
+
+def transpose(matrix):
+    _transposed = []
+    for row in range(len(matrix)):
+        _transposed.append([matrix[i][row] for i in range(len(matrix))])
+    return _transposed
+
+
+def tree_in_column_matrix(tree: Node, matrix: list):
+    """
+
+    :param tree:
+    :param matrix:
+    :return:
+    """
+    _internal_tree_representation = print_in_order(tree)
+    _transposed_matrix = transpose(matrix)
+    for row in _transposed_matrix:
+        if _internal_tree_representation in row:
+            return True
+    return False
+
+
+def find_element_bst(tree: Node, element: int) -> bool:
+    """
+        Return if an element is present into a bst
+
+        :param tree: a tree to be analyzed
+        :param element: the element to find
+        :return: The statement if the element is present or not
+    """
+    if tree is None:
+        return False
+    if tree.value == element:
+        return True
+    if element > tree.value:
+        return find_element_bst(tree.right, element)
+    else:
+        return find_element_bst(tree.left, element)
+
+
 if __name__ == "__main__":
     tree = Node(4, Node(2), Node(5, Node(4), Node(7, Node(6))))
     tree2 = Node(4, Node(2), Node(5, Node(3)))
@@ -60,3 +108,4 @@ if __name__ == "__main__":
     print(print_in_order(tree))
     tree = from_in_order_to_tree(print_in_order(tree))
     print(print_in_order(tree))
+    print(find_element_bst(tree, -1))
