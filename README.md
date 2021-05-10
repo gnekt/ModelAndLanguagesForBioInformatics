@@ -3,4 +3,5 @@
 As you can see there are two different directory:
 - Prolog 
 - Python
+
 On which you will find all the exercises (already tested) that i do for preparing the mid-term exam of this course.
