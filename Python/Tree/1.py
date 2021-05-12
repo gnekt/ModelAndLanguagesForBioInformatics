@@ -14,7 +14,7 @@ class Node:
 
     def __init__(self, value, left=None, right=None):
         """
-            Constructor for a node, the sub-trees can be omitted if there is no value for these.
+        Constructor for a node, the sub-trees can be omitted if there is no value for these.
         :param value: The node payload.
         :param left: the left sub-tree (defined as another Node)
         :param right: the right sub-tree (defined as another Node)
