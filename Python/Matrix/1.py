@@ -2,7 +2,7 @@
 
 def transpose(matrix):
     _transposed = []
-    for row in range(len(matrix)):
+    for row in range(len(matrix[0])):
         _transposed.append([matrix[i][row] for i in range(len(matrix))])
     return _transposed
 

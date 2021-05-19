@@ -7,10 +7,15 @@
 
 def check_null_vector(matrix):
     _shallow_matrix = matrix
+    i=0
     for row in matrix:
-        for _shallow_row in _shallow_matrix:
-            if sum(row) + sum(_shallow_row) == 0: return True
+        j=i+1
+        while j < len(matrix):
+            if sum(row) + sum(matrix[j]) == 0: return True
+            j+=1
+        i+=1
+    return False
 
 
 if __name__ == "__main__":
-    print(check_null_vector([[31,2],[-1,2],[-1,-2]]))
+    print(check_null_vector([[31,-31],[-31,31],[-1,-2]]))
