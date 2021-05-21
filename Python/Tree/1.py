@@ -33,7 +33,7 @@ def height_tree(tree: Node) -> int:
     :return: an int value which represent the height of the tree
     """
     if tree is None:
-        return -1
+        return 0
     left_heigth = height_tree(tree.left)
     right_heigth = height_tree(tree.right)
     return 1 + max([left_heigth, right_heigth])

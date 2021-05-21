@@ -18,4 +18,4 @@ def check_null_vector(matrix):
 
 
 if __name__ == "__main__":
-    print(check_null_vector([[31,-31],[-31,31],[-1,-2]]))
+    print(check_null_vector([[31,0],[31,-3],[-31,3]]))
