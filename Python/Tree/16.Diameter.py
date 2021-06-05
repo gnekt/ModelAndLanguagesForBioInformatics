@@ -28,6 +28,16 @@ def height_tree(tree: Tree) -> int:
     return 1 + max([left_heigth, right_heigth])
 
 def diameter(tree: Tree) -> int:
+    """
+    Evaluate the diameter of a given tree
+
+    Args:
+        tree:
+            The source tree
+
+    Returns:
+        The diameter of the tree as integer value
+    """
     if not tree:
         return 0
     heigth_l = height_tree(tree.left)
@@ -37,6 +47,16 @@ def diameter(tree: Tree) -> int:
     return max(heigth_r+heigth_l+1, max(diameter_r,diameter_l))
 
 def sum_leaves(tree: Tree) -> int:
+    """
+    Compute the sum of the leaves in a tree
+
+    Args:
+        tree:
+            The source tree
+
+    Returns:
+        An integer representing the sum
+    """
     if tree:
         if not tree.right and not tree.left:
             return tree.elem
@@ -44,6 +64,16 @@ def sum_leaves(tree: Tree) -> int:
     return 0
 
 def leaves_to_list(tree: Tree) -> int:
+    """
+    Retrieve the leaves of a tree
+
+    Args:
+        tree:
+            The source tree
+
+    Returns:
+        A list containing the leaves of a tree
+    """
     if tree:
         if not tree.right and not tree.left:
             return [tree.elem]
@@ -51,6 +81,16 @@ def leaves_to_list(tree: Tree) -> int:
     return []
 
 def internal_to_list(tree: Tree) -> int:
+    """
+        Retrieve the internal node of a tree
+
+        Args:
+            tree:
+                The source tree
+
+        Returns:
+            A list containing the internal node of a tree
+        """
     if tree:
         if not tree.right and not tree.left:
             return []
@@ -58,6 +98,19 @@ def internal_to_list(tree: Tree) -> int:
     return []
 
 def count_occurrence(tree: Tree, node: int) -> int:
+    """
+    Count the occurrence of a node in a tree
+
+    Args:
+        tree:
+            The source tree
+        node:
+            The integer value that we want find
+
+    Returns:
+        The number of occurrence
+
+    """
     if tree is None: return 0
     counter = 0
     if tree.elem == node:
@@ -69,6 +122,19 @@ def count_occurrence(tree: Tree, node: int) -> int:
     return counter
 
 def count_occurrence_bst(tree: Tree, node: int) -> int:
+    """
+        Count the occurrence of a node in a bst
+
+        Args:
+            tree:
+                The source bst
+            node:
+                The integer value that we want find
+
+        Returns:
+            The number of occurrence
+
+    """
     if tree is None: return 0
     counter = 0
     if tree.elem == node:
@@ -80,6 +146,7 @@ def count_occurrence_bst(tree: Tree, node: int) -> int:
     return counter
 
 def tree_is_subtree(tree: Tree, sub_tree: Tree) -> bool:
+    global start_sub_tree
     """
     Check if a given tree(sub_tree) is a sub-tree of a tree(tree), it may be robust to
     multiple occurrence of the root node
@@ -97,11 +164,14 @@ def tree_is_subtree(tree: Tree, sub_tree: Tree) -> bool:
     if equal_l and equal_r:
         return True
     else:
-        check_l = tree_is_subtree(tree.left, sub_tree)
-        check_r = tree_is_subtree(tree.right, sub_tree)
+        check_l = tree_is_subtree(tree.left, start_sub_tree)
+        check_r = tree_is_subtree(tree.right, start_sub_tree)
         return check_r or check_l
 
 def position_value_intersection(tree1: Tree, tree2: Tree) -> list:
+    """
+    Return a list containing the intersection of two trees, wrt of structure and value
+    """
     if not tree1 or not tree2:
         return []
     if tree1.elem == tree2.elem:
@@ -110,14 +180,10 @@ def position_value_intersection(tree1: Tree, tree2: Tree) -> list:
     return position_value_intersection(tree1.left,tree2.left)+ \
                     position_value_intersection(tree1.right, tree2.right)
 
-def symmetric_trees(tree1: Tree, tree2: Tree) -> bool:
-    if tree1 and tree2:
-        if tree1.elem == tree2.elem:
-            return True
-        return symmetric_trees(tree1.left,tree2.right) and symmetric_trees(tree1.right,tree2.left)
-    return False
-
 def sum_all_nodes(i_tree: Tree) -> float:
+    """
+        Sum all nodes in a tree
+    """
     if i_tree:
         return i_tree.elem + sum_all_nodes(i_tree.left) + sum_all_nodes(i_tree.right)
     return 0
@@ -140,6 +206,14 @@ def path_bst(i_tree: Tree, node: int) -> list:
     return []
 
 def path(i_tree: Tree, node: int) -> list:
+    """
+    Path finder starting from the root node, the last element of the output list
+                                    will be the target node of the finder
+    :param i_tree:
+    :param node:
+    :param temp_path:
+    :return:
+    """
     if i_tree:
         if i_tree.elem == node: return [node]
         path_s, path_r = [],[]
@@ -152,6 +226,6 @@ def path(i_tree: Tree, node: int) -> list:
     return []
 
 if __name__ == "__main__":
-    print(symmetric_trees(Tree(2,Tree(1),Tree(2,Tree(1,None,Tree(2)))),Tree(2,Tree(2,None,Tree(1,Tree(2))),Tree(1))))
+    print(position_value_intersection(Tree(2,Tree(2),Tree(2,Tree(1,None,Tree(2)))),Tree(2,Tree(2,None,Tree(1,Tree(2))),Tree(1))))
     print(sum_all_nodes(Tree(2,Tree(1),Tree(2,Tree(1,None,Tree(2))))))
-    print(path(Tree(3, Tree(1,None,Tree(6)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),6))
+    print(path(Tree(3, Tree(1,None,Tree(2)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),7))

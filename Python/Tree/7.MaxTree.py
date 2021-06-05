@@ -16,6 +16,14 @@ class Tree:
         self.elem = elem
 
 def max_tree(tree: Tree)-> int:
+    """
+    Evaluate the maximum value in a tree
+    Args:
+        tree: The source tree
+
+    Returns:
+        An integer value representing the maximum
+    """
     if not tree:
         return None
     if tree.elem and not tree.left and not tree.right:

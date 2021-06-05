@@ -28,18 +28,6 @@ def height_tree(tree: Tree) -> int:
     return 1 + max([left_heigth, right_heigth])
 
 def at_level(tree: Tree, level: int) -> list:
-    """
-    Return the element of a tree at a given height
-
-    Args:
-        tree:
-            The source tree
-        level:
-            The level at we want the elements
-
-    Returns:
-        A list containing the element at a given height
-    """
     if not tree:
         return []
     if level == 0:
@@ -48,6 +36,24 @@ def at_level(tree: Tree, level: int) -> list:
     right = at_level(tree.right, level - 1)
     return left + right
 
+def level_order_traversal(tree: Tree)-> list:
+    """
+    Perform the level order traversing of a tree
+
+    Args:
+        tree:
+            The source tree
+
+    Returns:
+        A list containing the tree node
+    """
+    _level_order = []
+    height = height_tree(tree)
+    i=0
+    while i <= height:
+        _level_order += at_level(tree,i)
+        i += 1
+    return _level_order
 
 if __name__ == "__main__":
-    print(at_level(Tree(1,Tree(2,Tree(3)),Tree(3)),2))
+    print(level_order_traversal(Tree(1,Tree(2,Tree(3)),Tree(3))))

@@ -12,7 +12,7 @@ class Node:
     the only difference is that here we omit the nil value when there is an empty node.
     """
 
-    def __init__(self, value, left=None, right=None):
+    def __init__(self, elem, left=None, right=None):
         """
         Constructor for a node, the sub-trees can be omitted if there is no value for these.
         :param value: The node payload.
@@ -21,7 +21,7 @@ class Node:
         """
         self.left = left
         self.right = right
-        self.value = value
+        self.elem = elem
 
 
 ##########################
@@ -51,7 +51,7 @@ def print_in_order(tree: Node) -> list:
         return []
     left = print_in_order(tree.left)
     right = print_in_order(tree.right)
-    return left + [tree.value] + right
+    return left + [tree.elem] + right
 
 
 ##########################
@@ -66,9 +66,9 @@ def height_of_a_node(tree: Node, node: Node) -> int:
     """
     if tree is None:
         raise Exception("No Founded Value")
-    if tree.value == node.value:
+    if tree.value == node.elem:
         return 0
-    if node.value > tree.value:
+    if node.value > tree.elem:
         return 1 + height_of_a_node(tree.right, node)
     else:
         return 1 + height_of_a_node(tree.left, node)
@@ -85,7 +85,7 @@ def equal_trees(tree1: Node, tree2: Node) -> bool:
     """
     if not tree1 and not tree2:
         return True
-    if tree1.value != tree2.value:
+    if tree1.elem != tree2.elem:
         return False
     return equal_trees(tree1.left, tree2.left) and equal_trees(tree1.right, tree2.right)
 
@@ -166,9 +166,9 @@ def find_element_bst(tree: Node, element: int) -> bool:
     """
     if tree is None:
         return False
-    if tree.value == element:
+    if tree.elem == element:
         return True
-    if element > tree.value:
+    if element > tree.elem:
         return find_element_bst(tree.right, element)
     else:
         return find_element_bst(tree.left, element)
@@ -185,9 +185,9 @@ def add_node_bst(tree: Node, node: Node) -> Node:
     """
     if tree is None:
         return node
-    if tree.value > node.value:
+    if tree.elem > node.elem:
         tree.left = add_node_bst(tree.left, node)
-    if tree.value < node.value:
+    if tree.elem < node.elem:
         tree.right = add_node_bst(tree.right, node)
     return tree
 

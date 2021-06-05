@@ -52,11 +52,12 @@ def len_encoding(i_list: list)-> list:
 
 def len_encoding_mod2(i_list: list)-> list:
     """
-    Do a length encoding of a list.
-    Example: encode([1,1,1,2,2,2,3,3,3]) -> [[3,1],[3,2],[3,3]]
-    Mod.2:-> if an element is single put on the list without saying that has length equal to 1
-    :param i_list: The source list
-    :return: The encoded list
+
+    Args:
+        i_list: 
+
+    Returns:
+
     """
 
     return list(map(lambda sublist: [len(sublist),sublist[0]] if len(sublist)>1 else sublist[0], pack(i_list)))

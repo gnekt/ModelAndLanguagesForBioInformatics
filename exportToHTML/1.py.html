@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>1.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #629755; font-style: italic;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #808080;}
+.s4 { color: #6897bb;}
+.s5 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+1.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot; 
+All the exercises that i found on the website regarding the tree 
+Christian Di Maio (matr.104985) 
+https://github.com/christiandimaio 
+c.dimaio1@student.unisi.it 
+&quot;&quot;&quot;</span>
+
+
+<span class="s2">class </span><span class="s1">Node:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Class which represent a tree as a node, it use more or less the same notation as we used in prolog, 
+    the only difference is that here we omit the nil value when there is an empty node. 
+    &quot;&quot;&quot;</span>
+
+    <span class="s2">def </span><span class="s1">__init__(self</span><span class="s2">, </span><span class="s1">value</span><span class="s2">, </span><span class="s1">left=</span><span class="s2">None, </span><span class="s1">right=</span><span class="s2">None</span><span class="s1">):</span>
+        <span class="s0">&quot;&quot;&quot; 
+        Constructor for a node, the sub-trees can be omitted if there is no value for these. 
+        :param value: The node payload. 
+        :param left: the left sub-tree (defined as another Node) 
+        :param right: the right sub-tree (defined as another Node) 
+        &quot;&quot;&quot;</span>
+        <span class="s1">self.left = left</span>
+        <span class="s1">self.right = right</span>
+        <span class="s1">self.value = value</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">height_tree(tree: Node) -&gt; int:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Perform the height of a given tree 
+    :param tree: the tree to be evaluated 
+    :return: an int value which represent the height of the tree 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">tree </span><span class="s2">is None</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s4">0</span>
+    <span class="s1">left_heigth = height_tree(tree.left)</span>
+    <span class="s1">right_heigth = height_tree(tree.right)</span>
+    <span class="s2">return </span><span class="s4">1 </span><span class="s1">+ max([left_heigth</span><span class="s2">, </span><span class="s1">right_heigth])</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">print_in_order(tree: Node) -&gt; list:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Perform the &quot;in-order&quot; traversal of a given tree 
+    :param tree: the tree to be evaluated 
+    :return: a list which contains all the nodes of the tree 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">tree </span><span class="s2">is None</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s1">[]</span>
+    <span class="s1">left = print_in_order(tree.left)</span>
+    <span class="s1">right = print_in_order(tree.right)</span>
+    <span class="s2">return </span><span class="s1">left + [tree.value] + right</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">height_of_a_node(tree: Node</span><span class="s2">, </span><span class="s1">node: Node) -&gt; int:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Compute the height of a node inside a tree 
+    :param tree: the bst on which we search the node 
+    :param node: the node to search 
+    :return: an int which represent the height of a given tree 
+    :exception: Raise No founded value if &quot;value&quot; is not present 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">tree </span><span class="s2">is None</span><span class="s1">:</span>
+        <span class="s2">raise </span><span class="s1">Exception(</span><span class="s5">&quot;No Founded Value&quot;</span><span class="s1">)</span>
+    <span class="s2">if </span><span class="s1">tree.value == node.value:</span>
+        <span class="s2">return </span><span class="s4">0</span>
+    <span class="s2">if </span><span class="s1">node.value &gt; tree.value:</span>
+        <span class="s2">return </span><span class="s4">1 </span><span class="s1">+ height_of_a_node(tree.right</span><span class="s2">, </span><span class="s1">node)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s4">1 </span><span class="s1">+ height_of_a_node(tree.left</span><span class="s2">, </span><span class="s1">node)</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">equal_trees(tree1: Node</span><span class="s2">, </span><span class="s1">tree2: Node) -&gt; bool:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Check whether or not two trees are equal (equal is defined in this case as node value, not simple the structure) 
+    :param tree1: The first tree 
+    :param tree2: The second tree 
+    :return: a boolean which says if the two trees are equal (True) or not (False) 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">tree1 </span><span class="s2">and not </span><span class="s1">tree2:</span>
+        <span class="s2">return True</span>
+    <span class="s2">if </span><span class="s1">tree1.value != tree2.value:</span>
+        <span class="s2">return False</span>
+    <span class="s2">return </span><span class="s1">equal_trees(tree1.left</span><span class="s2">, </span><span class="s1">tree2.left) </span><span class="s2">and </span><span class="s1">equal_trees(tree1.right</span><span class="s2">, </span><span class="s1">tree2.right)</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">from_in_order_to_tree(list_tree_representation: list) -&gt; Node:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Return a representation of the inorder tree as an instance of Node class 
+    :param list_tree_representation: the inorder list of element 
+    :return: a tree 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">list_tree_representation:</span>
+        <span class="s2">return None</span>
+    <span class="s2">if </span><span class="s1">len(list_tree_representation) == </span><span class="s4">1</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s1">Node(list_tree_representation[</span><span class="s4">0</span><span class="s1">])</span>
+    <span class="s2">return </span><span class="s1">Node(list_tree_representation[int((len(list_tree_representation) + </span><span class="s4">1</span><span class="s1">) / </span><span class="s4">2</span><span class="s1">)]</span><span class="s2">,</span>
+                <span class="s1">from_in_order_to_tree(list_tree_representation[:(int((len(list_tree_representation) + </span><span class="s4">1</span><span class="s1">) / </span><span class="s4">2</span><span class="s1">))])</span><span class="s2">,</span>
+                <span class="s1">from_in_order_to_tree(list_tree_representation[(int((len(list_tree_representation) + </span><span class="s4">1</span><span class="s1">) / </span><span class="s4">2</span><span class="s1">)) + </span><span class="s4">1</span><span class="s1">:]))</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">tree_in_row_matrix(tree: Node</span><span class="s2">, </span><span class="s1">matrix) -&gt; bool:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Given a bst of integers and a matrix of integers, verify if there exists and ordered of matrix 
+        whose values are in tree 
+    :param tree: the tree that has to be evaluated 
+    :param matrix: the matrix that has to be evaluated, type of [[x,x],[y,y]] 
+    :return: a boolean which represent if the statement is True or False 
+    &quot;&quot;&quot;</span>
+    <span class="s1">_internal_tree_representation = print_in_order(tree)</span>
+    <span class="s2">for </span><span class="s1">row </span><span class="s2">in </span><span class="s1">matrix:</span>
+        <span class="s2">if </span><span class="s1">all(element </span><span class="s2">in </span><span class="s1">row </span><span class="s2">for </span><span class="s1">element </span><span class="s2">in </span><span class="s1">_internal_tree_representation):</span>
+            <span class="s2">return True</span>
+    <span class="s2">return False</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">transpose(matrix):</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Compute the matrix transpose 
+    :param matrix: the matrix to be transposed, the transposing will not modify the input matrix 
+    :return: the transposed of matrix 
+    &quot;&quot;&quot;</span>
+    <span class="s1">_transposed = []</span>
+    <span class="s2">for </span><span class="s1">row </span><span class="s2">in </span><span class="s1">range(len(matrix)):</span>
+        <span class="s1">_transposed.append([matrix[i][row] </span><span class="s2">for </span><span class="s1">i </span><span class="s2">in </span><span class="s1">range(len(matrix))])</span>
+    <span class="s2">return </span><span class="s1">_transposed</span>
+
+
+<span class="s2">def </span><span class="s1">tree_in_column_matrix(tree: Node</span><span class="s2">, </span><span class="s1">matrix: list) -&gt; bool:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Given a bst of integers and a matrix of integers, verify if there exists and ordered of matrix 
+        whose values are in tree 
+    :param tree: the tree to be evaluated 
+    :param matrix: the matrix to be evaluated 
+    :return: return a bool if the statement is True or False 
+    &quot;&quot;&quot;</span>
+    <span class="s1">_internal_tree_representation = print_in_order(tree)</span>
+    <span class="s1">_transposed_matrix = transpose(matrix)</span>
+    <span class="s2">for </span><span class="s1">row </span><span class="s2">in </span><span class="s1">_transposed_matrix:</span>
+        <span class="s2">if </span><span class="s1">all(element </span><span class="s2">in </span><span class="s1">row </span><span class="s2">for </span><span class="s1">element </span><span class="s2">in </span><span class="s1">_internal_tree_representation):</span>
+            <span class="s2">return True</span>
+    <span class="s2">return False</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">find_element_bst(tree: Node</span><span class="s2">, </span><span class="s1">element: int) -&gt; bool:</span>
+    <span class="s0">&quot;&quot;&quot; 
+        Return if an element is present into a bst 
+ 
+        :param tree: a tree to be analyzed 
+        :param element: the element to find 
+        :return: The statement if the element is present or not 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">tree </span><span class="s2">is None</span><span class="s1">:</span>
+        <span class="s2">return False</span>
+    <span class="s2">if </span><span class="s1">tree.value == element:</span>
+        <span class="s2">return True</span>
+    <span class="s2">if </span><span class="s1">element &gt; tree.value:</span>
+        <span class="s2">return </span><span class="s1">find_element_bst(tree.right</span><span class="s2">, </span><span class="s1">element)</span>
+    <span class="s2">else</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s1">find_element_bst(tree.left</span><span class="s2">, </span><span class="s1">element)</span>
+
+
+<span class="s3">##########################</span>
+
+<span class="s2">def </span><span class="s1">add_node_bst(tree: Node</span><span class="s2">, </span><span class="s1">node: Node) -&gt; Node:</span>
+    <span class="s0">&quot;&quot;&quot; 
+    Add a node in a bst, as leaf. 
+    :param tree: the matrix on which we want to add a node. 
+    :param node: the node to be added 
+    :return: the matrix with the value added 
+    &quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">tree </span><span class="s2">is None</span><span class="s1">:</span>
+        <span class="s2">return </span><span class="s1">node</span>
+    <span class="s2">if </span><span class="s1">tree.value &gt; node.value:</span>
+        <span class="s1">tree.left = add_node_bst(tree.left</span><span class="s2">, </span><span class="s1">node)</span>
+    <span class="s2">if </span><span class="s1">tree.value &lt; node.value:</span>
+        <span class="s1">tree.right = add_node_bst(tree.right</span><span class="s2">, </span><span class="s1">node)</span>
+    <span class="s2">return </span><span class="s1">tree</span>
+
+
+<span class="s2">if </span><span class="s1">__name__ == </span><span class="s5">&quot;__main__&quot;</span><span class="s1">:</span>
+    <span class="s1">tree = Node(</span><span class="s4">4</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">2</span><span class="s1">)</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">5</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">4</span><span class="s1">)</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">7</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">6</span><span class="s1">))))</span>
+    <span class="s1">tree2 = Node(</span><span class="s4">4</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">2</span><span class="s1">)</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">6</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">5</span><span class="s1">)))</span>
+    <span class="s1">tree3 = Node(</span><span class="s4">4</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">2</span><span class="s1">)</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">10</span><span class="s2">, None, </span><span class="s1">Node(</span><span class="s4">12</span><span class="s1">)))</span>
+    <span class="s3"># Height of a tree</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Height of a tree&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">height_tree(tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">height_tree(tree2)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 3: </span><span class="s2">{</span><span class="s1">height_tree(tree3)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Print in-order</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Print in-order&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">print_in_order(tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">print_in_order(tree2)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 3: </span><span class="s2">{</span><span class="s1">print_in_order(tree3)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Height of a Node</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Height of a Node&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">height_of_a_node(tree</span><span class="s2">,</span><span class="s1">Node(</span><span class="s4">5</span><span class="s1">))</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s2">try</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">height_of_a_node(tree</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">11</span><span class="s1">))</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s2">except </span><span class="s1">Exception </span><span class="s2">as </span><span class="s1">ex:</span>
+        <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">ex</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s2">try</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s5">f&quot;Case 3: </span><span class="s2">{</span><span class="s1">height_of_a_node(tree</span><span class="s2">, </span><span class="s1">Node(-</span><span class="s4">1</span><span class="s1">))</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s2">except </span><span class="s1">Exception </span><span class="s2">as </span><span class="s1">ex:</span>
+        <span class="s1">print(</span><span class="s5">f&quot;Case 3: </span><span class="s2">{</span><span class="s1">ex</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Equal Trees</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Equal Trees&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">equal_trees(tree3</span><span class="s2">, </span><span class="s1">tree2)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">equal_trees(tree3</span><span class="s2">, </span><span class="s1">tree3)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 3: </span><span class="s2">{</span><span class="s1">equal_trees(tree</span><span class="s2">, </span><span class="s1">tree2)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 4: </span><span class="s2">{</span><span class="s1">equal_trees(tree3</span><span class="s2">, </span><span class="s1">tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># From in-order to tree</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- From in-order to tree&quot;</span><span class="s1">)</span>
+    <span class="s1">tree = from_in_order_to_tree(print_in_order(tree))</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">print_in_order(tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Tree in a Matrix Row</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Tree in a Matrix Row&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">tree_in_row_matrix(tree3</span><span class="s2">,</span><span class="s1">[[</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s1">]</span><span class="s2">,</span><span class="s1">[</span><span class="s4">2</span><span class="s2">,</span><span class="s4">4</span><span class="s2">,</span><span class="s4">10</span><span class="s2">,</span><span class="s4">12</span><span class="s1">]</span><span class="s2">,</span><span class="s1">[</span><span class="s4">1</span><span class="s2">,</span><span class="s4">2</span><span class="s2">,</span><span class="s4">3</span><span class="s2">,</span><span class="s4">4</span><span class="s1">]])</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">tree_in_row_matrix(tree3</span><span class="s2">, </span><span class="s1">[[</span><span class="s4">2</span><span class="s1">]])</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Tree in a Matrix Column</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Tree in a Matrix Column&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">tree_in_column_matrix(tree3</span><span class="s2">,</span><span class="s1">[[</span><span class="s4">2</span><span class="s2">,</span><span class="s4">4</span><span class="s2">,</span><span class="s4">3</span><span class="s2">,</span><span class="s4">10</span><span class="s1">]</span><span class="s2">,</span><span class="s1">[</span><span class="s4">4</span><span class="s2">,</span><span class="s4">2</span><span class="s2">,</span><span class="s4">43</span><span class="s2">,</span><span class="s4">50</span><span class="s1">]</span><span class="s2">,</span><span class="s1">[</span><span class="s4">10</span><span class="s2">,</span><span class="s4">10</span><span class="s2">,</span><span class="s4">10</span><span class="s2">,</span><span class="s4">10</span><span class="s1">]</span><span class="s2">,</span><span class="s1">[</span><span class="s4">12</span><span class="s2">,</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s2">,</span><span class="s4">0</span><span class="s1">]])</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Find element in a bst</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Find element in a bst&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 1: </span><span class="s2">{</span><span class="s1">find_element_bst(tree</span><span class="s2">, </span><span class="s1">-</span><span class="s4">1</span><span class="s1">)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Case 2: </span><span class="s2">{</span><span class="s1">find_element_bst(tree</span><span class="s2">, </span><span class="s4">7</span><span class="s1">)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s3"># Add node in a bst</span>
+    <span class="s1">print(</span><span class="s5">&quot;----- Add node in a bst&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s5">f&quot;Before: </span><span class="s2">{</span><span class="s1">print_in_order(tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span>
+    <span class="s1">tree = add_node_bst(tree</span><span class="s2">, </span><span class="s1">Node(</span><span class="s4">3</span><span class="s1">))</span>
+    <span class="s1">print(</span><span class="s5">f&quot;After: </span><span class="s2">{</span><span class="s1">print_in_order(tree)</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s1">)</span></pre>
+</body>
+</html>

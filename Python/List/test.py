@@ -1,3 +1,4 @@
+import re
 def remove(i_list: list)-> list:
     """
     Given an input list return a list without all the negative numbers
@@ -8,6 +9,9 @@ def remove(i_list: list)-> list:
     for element in i_list:
         if element >= 0: _shallow_list.append(element)
     return _shallow_list
+
+
+
 
 if __name__ == "__main__":
     print(remove([-1,-2,-3,1,2,3,-2]))

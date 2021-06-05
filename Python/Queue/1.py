@@ -19,13 +19,15 @@ class MyQueue():
     def __repr__(self):
         return f"{[element for element in self.queue]}"
 
+
+# TO Fix
 def retrieve_queue(queue):
     if len(queue.queue) == 0:
         return []
     else:
         return [queue.pop()] + retrieve_queue(queue)
 
-
+# TO Fix
 def ordered_queue_mergers(queue1: MyQueue, queue2: MyQueue) -> MyQueue:
     _list1 = retrieve_queue(queue1)
     _list1.sort()
