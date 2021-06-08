@@ -32,7 +32,8 @@ def print_in_order(tree: Tree) -> list:
 
 def closest(tree: Tree, target: int) -> int:
     """
-    Find the closest value of a given target value in a given non-empty Binary Search Tree (BST) of unique values.
+    Find the closest value of a given target value in a
+    given non-empty Binary Search Tree (BST) of unique values.
     Args:
         tree:
         target:
@@ -40,7 +41,9 @@ def closest(tree: Tree, target: int) -> int:
     Returns:
 
     """
-    _shallow_distance = list(map(lambda element: (abs(element-target),element),print_in_order(tree)))
+    _shallow_distance = list(
+        map(lambda element: (abs(element-target),element),print_in_order(tree))
+    )
     _shallow_distance.sort(key=lambda element: element[0])
     return _shallow_distance[0][1]
 

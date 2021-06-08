@@ -236,6 +236,71 @@ def path(i_tree: Tree, node: int) -> list:
             return path_r
     return []
 
+def invert(i_tree: Tree) -> Tree:
+    """
+    Invert the nodes of a tree, tree.right become tree.left and tree.left become tree.right
+
+    Args:
+        i_tree:
+            The source tree
+
+    Returns:
+        The swapped tree
+    """
+    if not i_tree:
+        return None
+    temp = i_tree.left
+    i_tree.left = i_tree.right
+    i_tree.right = temp
+    invert(i_tree.left)
+    invert(i_tree.right)
+    return i_tree
+
+def bst_predecessor(i_tree: Tree, target: int, predecessor=None) -> Tree:
+    """
+    Return the predecessor tree given a target node
+    Args:
+        i_tree:
+            The source tree
+        target:
+            The target node
+        predecessor:
+            The predecessor tree
+
+    Returns:
+        The predecessor node
+    """
+    if not i_tree: return None
+    if i_tree.elem == target:
+        return predecessor
+    if i_tree.elem > target:
+        return bst_predecessor(i_tree.left,target,i_tree)
+    if i_tree.elem < target:
+        return bst_predecessor(i_tree.right, target, i_tree)
+
+def bst_successor(i_tree: Tree, target: int, bigger=False) -> Tree:
+    """
+    Return the successor tree given a target node, if bigger is true return the right tree otherwise the left tree
+    Args:
+        i_tree:
+            The source tree
+        target:
+            The target node
+        bigger:
+            A boolean statement
+
+    Returns:
+        The successor node
+    """
+    if not i_tree: return None
+    if i_tree.elem == target:
+        return i_tree.left if not bigger else i_tree.right
+    if i_tree.elem > target:
+        return bst_successor(i_tree.left,target,bigger)
+    if i_tree.elem < target:
+        return bst_successor(i_tree.right, target,bigger)
+
+
 if __name__ == "__main__":
     print(
         position_value_intersection(
@@ -243,7 +308,7 @@ if __name__ == "__main__":
             Tree(2,Tree(2,None,Tree(1,Tree(2))),Tree(1)))
     )
     print(
-        sum_all_nodes(
-            Tree(2,Tree(1),Tree(2,Tree(1,None,Tree(2))))))
+        bst_successor(
+            Tree(2,Tree(1),Tree(4,Tree(3),Tree(5))),4,bigger=True))
     print(path(
         Tree(3, Tree(1,None,Tree(2)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),7))

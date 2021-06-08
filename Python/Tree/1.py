@@ -224,11 +224,89 @@ def add_node_bst(tree: Tree, node: Tree) -> Tree:
         tree.right = add_node_bst(tree.right, node)
     return tree
 
+##########################
+
+def balanced_tree(i_tree: Tree) -> bool:
+    if not i_tree: return True
+    if i_tree and not i_tree.right and not i_tree.left: return True
+    hl,hr = 0,0
+    if i_tree.left:
+        hl = height_tree(i_tree.left)
+    if i_tree.right:
+        hr = height_tree(i_tree.right)
+    return abs(hr-hl) <= 1 \
+           and balanced_tree(i_tree.left) \
+            and balanced_tree(i_tree.right)
+
+##########################
+
+def perfect_balanced_tree(i_tree: Tree) -> bool:
+    if not i_tree: return True
+    if i_tree and not i_tree.right and not i_tree.left: return True
+    hl,hr = 0,0
+    if i_tree.left:
+        hl = height_tree(i_tree.left)
+    if i_tree.right:
+        hr = height_tree(i_tree.right)
+    return hl==hr \
+           and perfect_balanced_tree(i_tree.left) \
+            and perfect_balanced_tree(i_tree.right)
+
+##########################
+"""
+Check if a tree is complete
+In the array representation of a binary tree, 
+if the parent node is assigned an index of ‘i’ 
+and left child gets assigned an index of ‘2*i + 1’ 
+while the right child is assigned an index of ‘2*i + 2’. 
+"""
+# This function counts the number of nodes in a binary tree
+def count_nodes(tree):
+    if tree is None:
+        return 0
+    return (1 + count_nodes(tree.left) + count_nodes(tree.right))
+
+
+# This function checks if binary tree is complete or not
+def complete_tree(tree, index, number_nodes):
+    # An empty is complete
+    if tree is None:
+        return True
+
+    # If index assigned to current nodes is more than
+    # number of nodes in tree, then tree is not complete
+    if index >= number_nodes:
+        return False
+
+    # Recur for left and right subtress
+    return (complete_tree(tree.left, 2 * index + 1, number_nodes)
+            and complete_tree(tree.right, 2 * index + 2, number_nodes)
+            )
+
+node_count = count_nodes(tree)
+index = 0
+if complete_tree(tree, index, node_count):
+    print("The tree is a complete binary tree")
+else:
+    print("The tree is not a complete binary tree")
+##########################
+
+def full_tree(i_tree: Tree) -> bool:
+    if not i_tree: return True
+    if i_tree and not i_tree.left and not i_tree.right: return True
+    if i_tree and i_tree.left and i_tree.right:
+        return full_tree(i_tree.right) and full_tree(i_tree.left)
+    return False
 
 if __name__ == "__main__":
     tree = Tree(4, Tree(2), Tree(5, Tree(4), Tree(7, Tree(6))))
     tree2 = Tree(4, Tree(2), Tree(6, Tree(5)))
-    tree3 = Tree(4, Tree(2), Tree(10, None, Tree(12)))
+    tree3 = Tree(4, Tree(2,Tree(1),Tree(3)), Tree(10, Tree(9), Tree(12)))
+    # Balanced tree
+    print("----- Perfect Balanced tree")
+    print(f"Case 1: {perfect_balanced_tree(tree)}")
+    print(f"Case 2: {perfect_balanced_tree(tree2)}")
+    print(f"Case 3: {perfect_balanced_tree(tree3)}")
     # Height of a tree
     print("----- Height of a tree")
     print(f"Case 1: {height_tree(tree)}")
