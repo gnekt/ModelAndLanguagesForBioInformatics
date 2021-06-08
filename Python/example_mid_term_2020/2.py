@@ -82,4 +82,4 @@ def solution_2(tree_1: Tree, tree_2: Tree) -> bool:
 
 if __name__ == "__main__":
     print(f"Case 1: Reference: True -> result: {solution_2(Tree(9, Tree(5, Tree(2), Tree(4))), Tree(9, Tree(2, Tree(4))))}")
-    print(f"Case 2: Reference: True -> result: {solution_2(Tree(9, Tree(5, Tree(2), Tree(4))), Tree(9, Tree(6, Tree(4))))}")
+    print(f"Case 2: Reference: False -> result: {solution_2(Tree(9, Tree(5, Tree(2), Tree(4))), Tree(9, Tree(6, Tree(4))))}")

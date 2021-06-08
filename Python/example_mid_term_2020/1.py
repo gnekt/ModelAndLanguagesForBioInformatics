@@ -22,22 +22,19 @@ def transpose(matrix: List[List[int]]) -> List[List[int]]:
     return _transposed
 
 
-def solution_1(matrix_1: List[List[int]], matrix_2: List[List[int]]) -> list:
-    _transposed_matrix1 = transpose(matrix_1)
-    _transposed_matrix2 = transpose(matrix_2)
-    _matrix_3 = []
-    for row_1 in _transposed_matrix1:
-        row_1_sum = sum(element for element in row_1)
-        for row_2 in _transposed_matrix2:
-            if all(element in row_1 for element in row_2) and sum(element for element in row_2) < row_1_sum:
-                _matrix_3.append(row_2)
-    if len(_matrix_3) != 0:
-        _transposed_matrix3 = transpose(_matrix_3)
-        return _transposed_matrix3
-    else:
-        return _matrix_3
+def solution_1(matrix: List[List[int]], matrix_1: List[List[int]]) -> List[List[int]]:
+    _trasposed_matrix = transpose(matrix)
+    _trasposed_matrix_1 = transpose(matrix_1)
+    _output_matrix = []
+    for row in _trasposed_matrix_1:
+        for row_target in _trasposed_matrix:
+            if all(element in row_target for element in row) and \
+                    sum(row) <= sum(row_target):
+                _output_matrix.append(row)
+
+    return transpose(_output_matrix) if len(_output_matrix) > 0 else []
 
 
 if __name__ == "__main__":
-    print(f"Case 1: Reference: True -> result: {solution_1([[3, 2, 1, 4], [4, 0, 5, 7], [4, 4, 0, -1]], [[3, 0, 1, 7], [4, 6, 5, -1], [3, 4, -2, -1]])}")
-    print(f"Case 2: Reference: False -> result: {solution_1([[3, 2, 1, 4], [4, 0, 5, 7], [4, 4, 0, -1]], [[3, 0, 1, 5], [2, 6, 5, -1], [3, 4, -2, -1]])}")
+    print(f"Case 1: Reference: [[3, 7],[4, -1],[3,-1]] -> result: {solution_1([[3, 2, 1, 4], [4, 0, 5, 7], [4, 4, 0, -1]], [[3, 0, 1, 7], [4, 6, 5, -1], [3, 4, -2, -1]])}")
+    print(f"Case 2: Reference: [] -> result: {solution_1([[3, 2, 1, 4], [4, 0, 5, 7], [4, 4, 0, -1]], [[3, 0, 1, 5], [2, 6, 5, -1], [3, 4, -2, -1]])}")
