@@ -29,7 +29,7 @@ def solution_1(matrix: List[List[int]], matrix_1: List[List[int]]) -> List[List[
     for row in _trasposed_matrix_1:
         for row_target in _trasposed_matrix:
             if all(element in row_target for element in row) and \
-                    sum(row) <= sum(row_target):
+                    sum(row) < sum(row_target):
                 _output_matrix.append(row)
 
     return transpose(_output_matrix) if len(_output_matrix) > 0 else []
