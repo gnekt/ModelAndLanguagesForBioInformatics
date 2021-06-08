@@ -1,12 +1,15 @@
-class Node:
+class Tree:
     """
-    Class which represent a tree as a node, it use more or less the same notation as we used in prolog,
-    the only difference is that here we omit the nil value when there is an empty node.
+    Class which represent a tree as a node,
+        it use more or less the same notation as we used in prolog,
+    the only difference is that here we omit the nil value
+        when there is an empty node.
     """
 
     def __init__(self, elem, left=None, right=None):
         """
-        Constructor for a node, the sub-trees can be omitted if there is no value for these.
+        Constructor for a node, the sub-trees can be omitted if
+                        there is no value for these.
         :param value: The node payload.
         :param left: the left sub-tree (defined as another Node)
         :param right: the right sub-tree (defined as another Node)
@@ -15,7 +18,7 @@ class Node:
         self.right = right
         self.elem = elem
 
-def max_bst(tree: Node):
+def max_bst(tree: Tree):
     if tree:
         if tree.elem and not tree.right and not tree.left:
             return tree.elem
@@ -24,7 +27,7 @@ def max_bst(tree: Node):
             return tree.elem
         return tree.elem if tree.elem > max else max
 
-def min_bst(tree: Node):
+def min_bst(tree: Tree):
     if tree:
         if tree.elem and not tree.right and not tree.left:
             return tree.elem
@@ -34,8 +37,8 @@ def min_bst(tree: Node):
         return tree.elem if tree.elem < min else min
 
 if __name__ == "__main__":
-    print(max_bst(Node(5,Node(3),Node(6,None,Node(12)))))
-    print(min_bst(Node(5, Node(3), Node(6, None, Node(12)))))
+    print(max_bst(Tree(5,Tree(3),Tree(6,None,Tree(12)))))
+    print(min_bst(Tree(5, Tree(3), Tree(6, None, Tree(12)))))
     a=[1,2,3]
     print(a)
     b=a

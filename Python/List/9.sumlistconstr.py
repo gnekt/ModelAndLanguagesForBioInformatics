@@ -1,6 +1,7 @@
 def sum_list_constraint(in_list: list, value: int) -> list:
     """
-    Find a sublist of in_list on which the sum of the element is equal to N
+    Find a sublist of in_list on which the sum of the element
+            is equal to N
     :param in_list: the source list
     :param value: the integer value target
     :return: a sublist

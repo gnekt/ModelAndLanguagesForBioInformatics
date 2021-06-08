@@ -1,12 +1,15 @@
 class Tree:
     """
-    Class which represent a tree as a node, it use more or less the same notation as we used in prolog,
-    the only difference is that here we omit the nil value when there is an empty node.
+    Class which represent a tree as a node,
+        it use more or less the same notation as we used in prolog,
+    the only difference is that here we omit the nil value
+        when there is an empty node.
     """
 
-    def __init__(self, elem= None, left=None, right=None):
+    def __init__(self, elem, left=None, right=None):
         """
-        Constructor for a node, the sub-trees can be omitted if there is no value for these.
+        Constructor for a node, the sub-trees can be omitted if
+                        there is no value for these.
         :param value: The node payload.
         :param left: the left sub-tree (defined as another Node)
         :param right: the right sub-tree (defined as another Node)

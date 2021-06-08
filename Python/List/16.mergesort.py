@@ -30,7 +30,8 @@ def merge_sort(in_list1: list) -> list:
         return []
     if len(in_list1) == 1:
         return [in_list1[0]]
-    _list1,_list2= in_list1[:int(((len(in_list1)+1)/2))],in_list1[int(((len(in_list1)+1)/2)):]
+    _list1,_list2= in_list1[:int(((len(in_list1)+1)/2))],\
+                        in_list1[int(((len(in_list1)+1)/2)):]
     _ordered_list1 = merge_sort(_list1)
     _ordered_list2 = merge_sort(_list2)
     return merge_ordered_list(_ordered_list1,_ordered_list2)

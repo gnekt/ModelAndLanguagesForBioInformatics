@@ -25,7 +25,8 @@ def all_permutations(start: list, end=[]):
         print(end)
     else:
         for i in range(len(start)):
-            all_permutations(start[:i] + start[i + 1:], end + start[i:i + 1])
+            all_permutations(start[:i] + start[i + 1:],
+                                end + start[i:i + 1])
 
 
 if __name__ == "__main__":

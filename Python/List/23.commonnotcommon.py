@@ -1,6 +1,7 @@
 def list_member(i_list1: list, i_list2: list):
     """
-    Compute the element common among i_list1 and i_list2; not common among i_list1 and i_list2
+    Compute the element common among i_list1 and i_list2;
+            not common among i_list1 and i_list2
     :param i_list1: The source list
     :param i_list2: The reference list
     :return: (Common list, Not Common list)

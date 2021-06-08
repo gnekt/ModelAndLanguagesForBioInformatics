@@ -1,6 +1,7 @@
 def transfer(i_list,target):
     """
-        Return all the consecutive element in i_list equal to target and copy it into the Out list1,
+        Return all the consecutive element in i_list equal
+            to target and copy it into the Out list1,
         all the remaining element will be put into the Out list2.
         :param i_list: The source list
         :param target: The target element

@@ -10,7 +10,8 @@ from functools import reduce
 
 def list_sum_equal_n(i_list: list, n: int) -> list:
     """
-    Given a List of List retrieve in output a list of element that are in i_list which contains only two positive values
+    Given a List of List retrieve in output a list of element that
+        are in i_list which contains only two positive values
     between 1 - 9, on which the sum among them is equal to n
     :param i_list: The source list
     :param n: The target value
@@ -18,7 +19,8 @@ def list_sum_equal_n(i_list: list, n: int) -> list:
     """
     _shallow_list = []
     for sublist in i_list:
-        if len(sublist) == 2 and reduce(lambda elem1,elem2: elem1+elem2,sublist) == n:
+        if len(sublist) == 2 and \
+                reduce(lambda elem1,elem2: elem1+elem2,sublist) == n:
             _shallow_list.append(sublist)
     return _shallow_list
 

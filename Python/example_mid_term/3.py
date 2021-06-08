@@ -12,7 +12,10 @@ import re
 def solution_3(target_string, length):
     matching = re.findall(r"xx.+?yy.+?zz",target_string)
     # Versione 1
-    print(list(map(lambda element: element,list(filter(lambda element: element if len(element) > length else "",matching)))))
+    print(list(map(lambda element: element,
+                   list(filter(lambda element:
+                               element if len(element) > length else "",
+                               matching)))))
     # Versione 2 - più compatta
     print([element for element in matching if len(element) > length])
 

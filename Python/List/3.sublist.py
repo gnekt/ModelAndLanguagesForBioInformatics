@@ -10,10 +10,12 @@ def ascending(list):
 
 def subset(list1: List, list2: List) -> bool:
     """
-    Check if all the element of list1 are inside list2, preserving only the order
+    Check if all the element of list1 are inside list2, preserving
+    only the order
     :param list1: list1 of element to find
     :param list2: list2 target list
-    :return: a boolean which represent True if the statement is respected
+    :return: a boolean which represent True if the statement is
+    respected
     """
     idx_position: List[int] = []
     for element in list1:
@@ -28,10 +30,12 @@ def subset(list1: List, list2: List) -> bool:
 
 def sublist(list1: list, list2: list) -> bool:
     """
-    Check if all the element of list1 are inside list2, preserving the order and subsequence of the elements
+    Check if all the element of list1 are inside list2, preserving
+    the order and subsequence of the elements
     :param list1: list1 of element to find
     :param list2: list2 target list
-    :return: a boolean which represent True if the statement is respected
+    :return: a boolean which represent True if the statement is
+    respected
     """
     _list2_idx = 0
     for element in list2:

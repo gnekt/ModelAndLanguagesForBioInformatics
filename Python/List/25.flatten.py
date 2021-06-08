@@ -1,6 +1,7 @@
 def flatten(nested_list: list) -> list:
     """
-    Flatten an input list which could have a hierarchical multi nested list
+    Flatten an input list which could have a hierarchical
+            multi nested list
     :param nested_list: The source list
     :return: The flatten list
     """

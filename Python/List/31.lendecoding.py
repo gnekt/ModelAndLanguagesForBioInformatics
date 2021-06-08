@@ -8,7 +8,8 @@ def repeat_value(repetition,value)-> list:
 
 def flatten(nested_list: list) -> list:
     """
-    Flatten an input list which could have a hierarchical multi nested list
+    Flatten an input list which could have a hierarchical
+        multi nested list
     :param nested_list: The source list
     :return: The flatten list
     """
@@ -20,11 +21,13 @@ def flatten(nested_list: list) -> list:
 
 def len_decoding(i_list)-> list:
     """
-    Given a run-length code list generated construct its uncompressed version.
+    Given a run-length code list generated construct
+        its uncompressed version.
     :param list:
     :return:
     """
-    return flatten(list(map(lambda sublist: repeat_value(sublist[0],sublist[1]),i_list)))
+    return flatten(list(map(lambda sublist:
+                        repeat_value(sublist[0],sublist[1]),i_list)))
 
 if __name__ == "__main__":
     print(len_decoding([[3, 1], [3, 2], [1, 4], [3, 3]]))

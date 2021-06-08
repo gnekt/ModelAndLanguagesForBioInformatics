@@ -1,4 +1,5 @@
-def merge_ordered_list(in_list1: list, in_list2: list) -> list:
+def merge_ordered_list(in_list1: list, in_list2: list) \
+            -> list:
     """
     Merge two ordered list
     :param in_list1: the first source list

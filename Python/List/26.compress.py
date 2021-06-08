@@ -1,6 +1,7 @@
 def compress(i_list: list) -> list:
     """
-    Compress a list contains repeated sequentially elements with a single copy of the element
+    Compress a list contains repeated sequentially elements
+        with a single copy of the element
     :param i_list: The source list
     :return: The compressed list
     """

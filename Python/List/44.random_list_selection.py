@@ -13,7 +13,11 @@ def random_pick(i_list: list,n)-> list:
     assert(n <= len(i_list))
     iter_idx = 1
     while n > 0:
-        _shallow_list.append(_list_copy.pop(random.randint(0,len(i_list)-iter_idx)))
+        _shallow_list.append(
+            _list_copy.pop(
+                random.randint(0,len(i_list)-iter_idx)
+            )
+        )
         iter_idx += 1
         n -= 1
     return _shallow_list

@@ -20,8 +20,10 @@ def transfer(i_list,target):
 
 def pack(i_list1: list)-> list:
     """
-        Pack sequence of duplicate integer in a sub list of the output list.
-        Example [1,1,1,1,1,2,2,2,2,3,3,3,3] -> [[1,1,1,1,1],[2,2,2,2],[3,3,3,3]]
+        Pack sequence of duplicate integer in a sub list of
+            the output list.
+        Example [1,1,1,1,1,2,2,2,2,3,3,3,3]
+                    -> [[1,1,1,1,1],[2,2,2,2],[3,3,3,3]]
         :param i_list1: The extended version
         :return: The compressed nested list
     """
@@ -29,7 +31,8 @@ def pack(i_list1: list)-> list:
     _output_list = []
     i = 0
     while i < len(_shallow_list):
-        _sequence,_shallow_list = transfer(_shallow_list,_shallow_list[0])
+        _sequence,_shallow_list = \
+                    transfer(_shallow_list,_shallow_list[0])
         _output_list.append(_sequence)
     return _output_list
 

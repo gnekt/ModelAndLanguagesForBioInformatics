@@ -5,16 +5,18 @@ https://github.com/christiandimaio
 c.dimaio1@student.unisi.it
 """
 
-
-class Node:
+class Tree:
     """
-    Class which represent a tree as a node, it use more or less the same notation as we used in prolog,
-    the only difference is that here we omit the nil value when there is an empty node.
+    Class which represent a tree as a node,
+        it use more or less the same notation as we used in prolog,
+    the only difference is that here we omit the nil value
+        when there is an empty node.
     """
 
     def __init__(self, elem, left=None, right=None):
         """
-        Constructor for a node, the sub-trees can be omitted if there is no value for these.
+        Constructor for a node, the sub-trees can be omitted if
+                        there is no value for these.
         :param value: The node payload.
         :param left: the left sub-tree (defined as another Node)
         :param right: the right sub-tree (defined as another Node)
@@ -26,7 +28,7 @@ class Node:
 
 ##########################
 
-def height_tree(tree: Node) -> int:
+def height_tree(tree: Tree) -> int:
     """
     Perform the height of a given tree
     :param tree: the tree to be evaluated
@@ -41,7 +43,7 @@ def height_tree(tree: Node) -> int:
 
 ##########################
 
-def print_in_order(tree: Node) -> list:
+def print_in_order(tree: Tree) -> list:
     """
     Perform the "in-order" traversal of a given tree
     :param tree: the tree to be evaluated
@@ -56,7 +58,7 @@ def print_in_order(tree: Node) -> list:
 
 ##########################
 
-def height_of_a_node(tree: Node, node: Node) -> int:
+def height_of_a_node(tree: Tree, node: Tree) -> int:
     """
     Compute the height of a node inside a tree
     :param tree: the bst on which we search the node
@@ -66,9 +68,9 @@ def height_of_a_node(tree: Node, node: Node) -> int:
     """
     if tree is None:
         raise Exception("No Founded Value")
-    if tree.value == node.elem:
+    if tree.elem == node.elem:
         return 0
-    if node.value > tree.elem:
+    if node.elem > tree.elem:
         return 1 + height_of_a_node(tree.right, node)
     else:
         return 1 + height_of_a_node(tree.left, node)
@@ -76,23 +78,27 @@ def height_of_a_node(tree: Node, node: Node) -> int:
 
 ##########################
 
-def equal_trees(tree1: Node, tree2: Node) -> bool:
+def equal_trees(tree1: Tree, tree2: Tree) -> bool:
     """
-    Check whether or not two trees are equal (equal is defined in this case as node value, not simple the structure)
+    Check whether or not two trees are equal
+        (equal is defined in this case as node value,
+            not simple the structure)
     :param tree1: The first tree
     :param tree2: The second tree
-    :return: a boolean which says if the two trees are equal (True) or not (False)
+    :return: a boolean which says
+                if the two trees are equal (True) or not (False)
     """
     if not tree1 and not tree2:
         return True
     if tree1.elem != tree2.elem:
         return False
-    return equal_trees(tree1.left, tree2.left) and equal_trees(tree1.right, tree2.right)
+    return equal_trees(tree1.left, tree2.left) and \
+                equal_trees(tree1.right, tree2.right)
 
 
 ##########################
 
-def from_in_order_to_tree(list_tree_representation: list) -> Node:
+def from_in_order_to_tree(list_tree_representation: list) -> Tree:
     """
     Return a representation of the inorder tree as an instance of Node class
     :param list_tree_representation: the inorder list of element
@@ -101,25 +107,33 @@ def from_in_order_to_tree(list_tree_representation: list) -> Node:
     if not list_tree_representation:
         return None
     if len(list_tree_representation) == 1:
-        return Node(list_tree_representation[0])
-    return Node(list_tree_representation[int((len(list_tree_representation) + 1) / 2)],
-                from_in_order_to_tree(list_tree_representation[:(int((len(list_tree_representation) + 1) / 2))]),
-                from_in_order_to_tree(list_tree_representation[(int((len(list_tree_representation) + 1) / 2)) + 1:]))
-
+        return Tree(list_tree_representation[0])
+    return Tree(
+                list_tree_representation
+                    [int((len(list_tree_representation)) / 2)],
+                from_in_order_to_tree(list_tree_representation
+                    [:(int((len(list_tree_representation)) / 2))]),
+                from_in_order_to_tree(list_tree_representation
+                    [(int((len(list_tree_representation)) / 2)) + 1:])
+    )
 
 ##########################
 
-def tree_in_row_matrix(tree: Node, matrix) -> bool:
+def tree_in_row_matrix(tree: Tree, matrix) -> bool:
     """
-    Given a bst of integers and a matrix of integers, verify if there exists and ordered of matrix
+    Given a bst of integers and a matrix of integers,
+        verify if there exists and ordered of matrix
         whose values are in tree
     :param tree: the tree that has to be evaluated
-    :param matrix: the matrix that has to be evaluated, type of [[x,x],[y,y]]
-    :return: a boolean which represent if the statement is True or False
+    :param matrix: the matrix that has to be evaluated,
+                type of [[x,x],[y,y]]
+    :return: a boolean which represent if the statement is
+                True or False
     """
     _internal_tree_representation = print_in_order(tree)
     for row in matrix:
-        if all(element in row for element in _internal_tree_representation):
+        if all(element in row
+                for element in _internal_tree_representation):
             return True
     return False
 
@@ -129,18 +143,22 @@ def tree_in_row_matrix(tree: Node, matrix) -> bool:
 def transpose(matrix):
     """
     Compute the matrix transpose
-    :param matrix: the matrix to be transposed, the transposing will not modify the input matrix
+    :param matrix: the matrix to be transposed,
+        the transposing will not modify the input matrix
     :return: the transposed of matrix
     """
     _transposed = []
     for row in range(len(matrix)):
-        _transposed.append([matrix[i][row] for i in range(len(matrix))])
+        _transposed.append(
+            [matrix[i][row] for i in range(len(matrix))]
+        )
     return _transposed
 
 
-def tree_in_column_matrix(tree: Node, matrix: list) -> bool:
+def tree_in_column_matrix(tree: Tree, matrix: list) -> bool:
     """
-    Given a bst of integers and a matrix of integers, verify if there exists and ordered of matrix
+    Given a bst of integers and a matrix of integers,
+        verify if there exists and ordered of matrix
         whose values are in tree
     :param tree: the tree to be evaluated
     :param matrix: the matrix to be evaluated
@@ -149,14 +167,15 @@ def tree_in_column_matrix(tree: Node, matrix: list) -> bool:
     _internal_tree_representation = print_in_order(tree)
     _transposed_matrix = transpose(matrix)
     for row in _transposed_matrix:
-        if all(element in row for element in _internal_tree_representation):
+        if all(element in row
+                for element in _internal_tree_representation):
             return True
     return False
 
 
 ##########################
 
-def find_element_bst(tree: Node, element: int) -> bool:
+def find_element_bst(tree: Tree, element: int) -> bool:
     """
         Return if an element is present into a bst
 
@@ -173,10 +192,24 @@ def find_element_bst(tree: Node, element: int) -> bool:
     else:
         return find_element_bst(tree.left, element)
 
+def find_element(tree: Tree, element: int) -> bool:
+    """
+        Return if an element is present into a a tree
+
+        :param tree: a tree to be analyzed
+        :param element: the element to find
+        :return: The statement if the element is present or not
+    """
+    if tree is None:
+        return False
+    if tree.elem == element:
+        return True
+    return find_element(tree.right, element) or find_element(tree.left, element)
+
 
 ##########################
 
-def add_node_bst(tree: Node, node: Node) -> Node:
+def add_node_bst(tree: Tree, node: Tree) -> Tree:
     """
     Add a node in a bst, as leaf.
     :param tree: the matrix on which we want to add a node.
@@ -193,9 +226,9 @@ def add_node_bst(tree: Node, node: Node) -> Node:
 
 
 if __name__ == "__main__":
-    tree = Node(4, Node(2), Node(5, Node(4), Node(7, Node(6))))
-    tree2 = Node(4, Node(2), Node(6, Node(5)))
-    tree3 = Node(4, Node(2), Node(10, None, Node(12)))
+    tree = Tree(4, Tree(2), Tree(5, Tree(4), Tree(7, Tree(6))))
+    tree2 = Tree(4, Tree(2), Tree(6, Tree(5)))
+    tree3 = Tree(4, Tree(2), Tree(10, None, Tree(12)))
     # Height of a tree
     print("----- Height of a tree")
     print(f"Case 1: {height_tree(tree)}")
@@ -208,13 +241,13 @@ if __name__ == "__main__":
     print(f"Case 3: {print_in_order(tree3)}")
     # Height of a Node
     print("----- Height of a Node")
-    print(f"Case 1: {height_of_a_node(tree,Node(5))}")
+    print(f"Case 1: {height_of_a_node(tree,Tree(5))}")
     try:
-        print(f"Case 2: {height_of_a_node(tree, Node(11))}")
+        print(f"Case 2: {height_of_a_node(tree, Tree(11))}")
     except Exception as ex:
         print(f"Case 2: {ex}")
     try:
-        print(f"Case 3: {height_of_a_node(tree, Node(-1))}")
+        print(f"Case 3: {height_of_a_node(tree, Tree(-1))}")
     except Exception as ex:
         print(f"Case 3: {ex}")
     # Equal Trees
@@ -238,8 +271,12 @@ if __name__ == "__main__":
     print("----- Find element in a bst")
     print(f"Case 1: {find_element_bst(tree, -1)}")
     print(f"Case 2: {find_element_bst(tree, 7)}")
+    # Find element in a tree
+    print("----- Find element in a tree")
+    print(f"Case 1: {find_element(tree, -1)}")
+    print(f"Case 2: {find_element(tree, 7)}")
     # Add node in a bst
     print("----- Add node in a bst")
     print(f"Before: {print_in_order(tree)}")
-    tree = add_node_bst(tree, Node(3))
+    tree = add_node_bst(tree, Tree(3))
     print(f"After: {print_in_order(tree)}")

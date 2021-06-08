@@ -1,5 +1,7 @@
-# define a function which given a binary search tree T of integers and a rectangular matrix M
-# of integers verify if there exists an ordered row of M (e.g. values in ascending order) whose
+# define a function which given a binary search tree
+# T of integers and a rectangular matrix M
+# of integers verify if there exists an ordered row of
+# M (e.g. values in ascending order) whose
 # values are in T.
 
 class Node:

@@ -1,6 +1,7 @@
 def transfer(i_list,target):
     """
-        Return all the consecutive element in i_list equal to target and copy it into the Out list1,
+        Return all the consecutive element in i_list
+            equal to target and copy it into the Out list1,
         all the remaining element will be put into the Out list2.
         :param i_list: The source list
         :param target: The target element
@@ -27,8 +28,10 @@ def transfer(i_list,target):
 
 def pack(i_list1: list)-> list:
     """
-        Pack sequence of duplicate integer in a sub list of the output list.
-        Example [1,1,1,1,1,2,2,2,2,3,3,3,3] -> [[1,1,1,1,1],[2,2,2,2],[3,3,3,3]]
+        Pack sequence of duplicate integer in a sub list of
+            the output list.
+        Example [1,1,1,1,1,2,2,2,2,3,3,3,3]
+                    -> [[1,1,1,1,1],[2,2,2,2],[3,3,3,3]]
         :param i_list1: The extended version
         :return: The compressed nested list
     """
@@ -36,7 +39,8 @@ def pack(i_list1: list)-> list:
     _output_list = []
     i = 0
     while i < len(_shallow_list):
-        _sequence,_shallow_list = transfer(_shallow_list,_shallow_list[0])
+        _sequence,_shallow_list = \
+                transfer(_shallow_list,_shallow_list[0])
         _output_list.append(_sequence)
     return _output_list
 ##########################################################################
@@ -44,23 +48,32 @@ def pack(i_list1: list)-> list:
 def len_encoding(i_list: list)-> list:
     """
     Do a length encoding of a list.
-    Example: encode([1,1,1,2,2,2,3,3,3]) -> [[3,1],[3,2],[3,3]]
+    Example: encode([1,1,1,2,2,2,3,3,3,4]) -> [[3,1],[3,2],[3,3],[1,4]]
     :param i_list: The source list
     :return: The encoded list
     """
-    return list(map(lambda sublist: [len(sublist),sublist[0]], pack(i_list)))
+    return list(map(lambda sublist: [len(sublist),sublist[0]],
+                        pack(i_list)))
 
 def len_encoding_mod2(i_list: list)-> list:
     """
+    Do a length encoding of a list.
 
     Args:
         i_list: 
+            The source list
 
     Returns:
+        The encoded list
 
+    Examples:
+        Example: encode([1,1,1,2,2,2,3,3,4]) -> [[3,1],[3,2],[3,3],4]
     """
 
-    return list(map(lambda sublist: [len(sublist),sublist[0]] if len(sublist)>1 else sublist[0], pack(i_list)))
+    return list(map(lambda sublist: [len(sublist),sublist[0]] if
+                        len(sublist)>1
+                        else sublist[0],
+                    pack(i_list)))
 
 
 if __name__ == "__main__":

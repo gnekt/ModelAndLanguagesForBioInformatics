@@ -42,9 +42,11 @@ def print_in_order(tree: Tree) -> list:
 def solution_2(tree_1: Tree, tree_2: Tree) -> bool:
     _tree_1_representation = print_in_order(tree_1)
     _tree_2_representation = print_in_order(tree_2)
-    if len(_tree_2_representation) < (len(_tree_1_representation)*2): return False
+    if len(_tree_2_representation) < (len(_tree_1_representation)*2):
+        return False
     for node in _tree_1_representation:
-        if len(list(filter((lambda node_2: node_2 == node),_tree_2_representation))) < 2:
+        if len(list(filter((lambda node_2: node_2 == node),
+                           _tree_2_representation))) < 2:
             return False
     return True
 

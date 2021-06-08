@@ -18,39 +18,32 @@ class Tree:
         self.right = right
         self.elem = elem
 
-def height_tree(tree: Tree) -> int:
+def print_in_order(tree: Tree) -> list:
     """
-    Perform the height of a given tree
+    Perform the "in-order" traversal of a given tree
     :param tree: the tree to be evaluated
-    :return: an int value which represent the height of the tree
+    :return: a list which contains all the nodes of the tree
     """
     if tree is None:
-        return -1
-    left_heigth = height_tree(tree.left)
-    right_heigth = height_tree(tree.right)
-    return 1 + max([left_heigth, right_heigth])
+        return []
+    left = print_in_order(tree.left)
+    right = print_in_order(tree.right)
+    return left + [tree.elem] + right
 
-def at_level(tree: Tree, level: int) -> list:
+def closest(tree: Tree, target: int) -> int:
     """
-    Return the element of a tree at a given height
-
+    Find the closest value of a given target value in a given non-empty Binary Search Tree (BST) of unique values.
     Args:
         tree:
-            The source tree
-        level:
-            The level at we want the elements
+        target:
 
     Returns:
-        A list containing the element at a given height
-    """
-    if not tree:
-        return []
-    if level == 0:
-        return [tree.elem]
-    left = at_level(tree.left,level-1)
-    right = at_level(tree.right, level - 1)
-    return left + right
 
+    """
+    _shallow_distance = list(map(lambda element: (abs(element-target),element),print_in_order(tree)))
+    _shallow_distance.sort(key=lambda element: element[0])
+    return _shallow_distance[0][1]
 
 if __name__ == "__main__":
-    print(at_level(Tree(1,Tree(2,Tree(3)),Tree(3)),2))
+    print(closest(
+            Tree(3, Tree(1,None,Tree(2)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),10))

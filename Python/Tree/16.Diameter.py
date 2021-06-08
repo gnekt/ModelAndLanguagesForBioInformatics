@@ -1,12 +1,15 @@
 class Tree:
     """
-    Class which represent a tree as a node, it use more or less the same notation as we used in prolog,
-    the only difference is that here we omit the nil value when there is an empty node.
+    Class which represent a tree as a node,
+        it use more or less the same notation as we used in prolog,
+    the only difference is that here we omit the nil value
+        when there is an empty node.
     """
 
-    def __init__(self, elem= None, left=None, right=None):
+    def __init__(self, elem, left=None, right=None):
         """
-        Constructor for a node, the sub-trees can be omitted if there is no value for these.
+        Constructor for a node, the sub-trees can be omitted if
+                        there is no value for these.
         :param value: The node payload.
         :param left: the left sub-tree (defined as another Node)
         :param right: the right sub-tree (defined as another Node)
@@ -94,7 +97,9 @@ def internal_to_list(tree: Tree) -> int:
     if tree:
         if not tree.right and not tree.left:
             return []
-        return [tree.elem]+internal_to_list(tree.left)+internal_to_list(tree.right)
+        return [tree.elem]+\
+               internal_to_list(tree.left)+\
+               internal_to_list(tree.right)
     return []
 
 def count_occurrence(tree: Tree, node: int) -> int:
@@ -148,7 +153,8 @@ def count_occurrence_bst(tree: Tree, node: int) -> int:
 def tree_is_subtree(tree: Tree, sub_tree: Tree) -> bool:
     global start_sub_tree
     """
-    Check if a given tree(sub_tree) is a sub-tree of a tree(tree), it may be robust to
+    Check if a given tree(sub_tree) is a sub-tree of a tree(tree), 
+        it may be robust to
     multiple occurrence of the root node
     :param tree: The Target tree where we want to look
     :param sub_tree: The source tree
@@ -170,28 +176,32 @@ def tree_is_subtree(tree: Tree, sub_tree: Tree) -> bool:
 
 def position_value_intersection(tree1: Tree, tree2: Tree) -> list:
     """
-    Return a list containing the intersection of two trees, wrt of structure and value
+    Return a list containing the intersection of two trees,
+        wrt of structure and value
     """
     if not tree1 or not tree2:
         return []
     if tree1.elem == tree2.elem:
-        return [tree1.elem]+position_value_intersection(tree1.left,tree2.left)+ \
-                    position_value_intersection(tree1.right, tree2.right)
+        return [tree1.elem]+\
+               position_value_intersection(tree1.left,tree2.left)+ \
+                position_value_intersection(tree1.right, tree2.right)
     return position_value_intersection(tree1.left,tree2.left)+ \
-                    position_value_intersection(tree1.right, tree2.right)
+                position_value_intersection(tree1.right, tree2.right)
 
 def sum_all_nodes(i_tree: Tree) -> float:
     """
         Sum all nodes in a tree
     """
     if i_tree:
-        return i_tree.elem + sum_all_nodes(i_tree.left) + sum_all_nodes(i_tree.right)
+        return i_tree.elem + sum_all_nodes(i_tree.left) + \
+               sum_all_nodes(i_tree.right)
     return 0
 
 def path_bst(i_tree: Tree, node: int) -> list:
     """
-    Path finder starting from the root node, the last element of the output list
-                                    will be the target node of the finder
+    Path finder starting from the root node,
+        the last element of the output list
+                    will be the target node of the finder
     :param i_tree:
     :param node:
     :param temp_path:
@@ -207,8 +217,9 @@ def path_bst(i_tree: Tree, node: int) -> list:
 
 def path(i_tree: Tree, node: int) -> list:
     """
-    Path finder starting from the root node, the last element of the output list
-                                    will be the target node of the finder
+    Path finder starting from the root node,
+    the last element of the output list
+                will be the target node of the finder
     :param i_tree:
     :param node:
     :param temp_path:
@@ -226,6 +237,13 @@ def path(i_tree: Tree, node: int) -> list:
     return []
 
 if __name__ == "__main__":
-    print(position_value_intersection(Tree(2,Tree(2),Tree(2,Tree(1,None,Tree(2)))),Tree(2,Tree(2,None,Tree(1,Tree(2))),Tree(1))))
-    print(sum_all_nodes(Tree(2,Tree(1),Tree(2,Tree(1,None,Tree(2))))))
-    print(path(Tree(3, Tree(1,None,Tree(2)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),7))
+    print(
+        position_value_intersection(
+            Tree(2,Tree(2),Tree(2,Tree(1,None,Tree(2)))),
+            Tree(2,Tree(2,None,Tree(1,Tree(2))),Tree(1)))
+    )
+    print(
+        sum_all_nodes(
+            Tree(2,Tree(1),Tree(2,Tree(1,None,Tree(2))))))
+    print(path(
+        Tree(3, Tree(1,None,Tree(2)), Tree(6, Tree(4), Tree(7,None,Tree(9)))),7))

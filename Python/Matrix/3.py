@@ -8,7 +8,11 @@ def matrix_product(matrix1, matrix2):
         idx_2 = 0
         _temp = []
         while idx_2 < _n_columns_matrix2:
-            _temp.append(sum([(row[idx]*matrix2[idx][idx_2]) for idx in range(len(matrix1[0]))]))
+            _temp.append(
+                sum([(row[idx]*matrix2[idx][idx_2])
+                     for idx in range(len(matrix1[0]))]
+                    )
+            )
             idx_2 += 1
         _result_matrix.append(_temp)
         idx_1 += 1
